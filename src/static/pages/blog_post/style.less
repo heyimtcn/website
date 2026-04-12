@@ -1,0 +1,111 @@
+@mobile_view: ~"(max-width: 850px)";
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --bg_size: 150px;
+    --margin: ~"min(calc(100vw / 910 * 70), 70px)";
+    @media @mobile_view {
+        --bg_size: 100px;
+    }
+}
+
+@keyframes background_animation {
+    from {
+        background-position-x: 0;
+        background-position-y: 0;
+    }
+    to {
+        background-position-x: var(--bg_size);
+        background-position-y: var(--bg_size);
+    }
+}
+
+body {
+    margin: 0;
+    height: 100%;
+    background-color: rgb(251, 255, 0);
+    background-image: url("/media/backgrounds/blog.webp");
+    background-size: var(--bg_size) var(--bg_size);
+    animation-name: background_animation;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    @media @mobile_view {
+        animation-duration: 4s;
+    }
+}
+
+#article {
+    min-height: calc(100vh - var(--margin));
+    width: calc(100vw - var(--margin));
+    margin: calc(var(--margin) / 2);
+    background-color: white;
+    overflow: hidden;
+    box-sizing: border-box;
+    padding: 20px;
+    @media @mobile_view {
+        padding: 15px;
+    }
+    border-radius: 30px;
+}
+
+#thumbnail {
+    display: block;
+    max-width: 600px;
+    width: 100%;
+    aspect-ratio: 2;
+    border-radius: 30px;
+    margin-bottom: 20px;
+    image-rendering: pixelated;
+}
+
+#title {
+    margin-top: 0;
+    margin-bottom: 8px;
+    font-size: 2.5rem;
+}
+
+#description {
+    display: block;
+    text-wrap: pretty;
+    margin-bottom: 8px;
+}
+
+#date {
+    margin-top: 0;
+    margin-bottom: 0;
+    color: gray;
+    font-size: 0.8rem;
+}
+
+#content {
+    margin-top: 15px;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    * {
+        text-wrap: pretty;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+    ol {
+        margin-top: -20px;
+        margin-bottom: 0;
+    }
+    li {
+        margin: 0;
+    }
+    ul {
+        margin-top: -20px;
+        margin-bottom: 0;
+    }
+    & > *:last-child {
+        margin-bottom: 0;
+    }
+}

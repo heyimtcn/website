@@ -1,0 +1,64 @@
+@mobile_view: ~"(max-width: 850px)";
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --bg_size: 150px;
+    @media @mobile_view {
+        --bg_size: 100px;
+    }
+}
+
+@keyframes background_animation {
+    from {
+        background-position-x: 0;
+        background-position-y: 0;
+    }
+    to {
+        background-position-x: var(--bg_size);
+        background-position-y: var(--bg_size);
+    }
+}
+
+body {
+    margin: 0;
+    min-height: 100vh;
+    overflow: hidden;
+    background-color: rgb(0, 38, 255);
+    background-image: url("/media/backgrounds/about_me.webp");
+    background-size: var(--bg_size) var(--bg_size);
+    animation-name: background_animation;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media @mobile_view {
+        animation-duration: 4s;
+    }
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+#content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 20px;
+    max-width: 80%;
+    font-size: 1rem;
+    @media @mobile_view {
+        padding: 10px;
+        border-radius: 10px;
+        font-size: 0.85rem;
+    }
+    & > *:first-child {
+        margin-top: 0;
+    }
+    & > *:last-child {
+        margin-bottom: 0;
+    }
+}

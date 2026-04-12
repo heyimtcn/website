@@ -1,0 +1,9 @@
+{
+  "tasks": {
+    "dev": "deno run -A build.ts && deno run --env-file=app/server/.env -A app/server/main.ts",
+    "start": "deno run -A build.ts && deno run -A app/server/main.ts"
+  },
+  "fmt": {
+    "useTabs": true
+  }
+}

@@ -1,0 +1,109 @@
+@mobile_view: ~"(max-width: 850px)";
+
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+:root {
+    --bg_size: 150px;
+    @media @mobile_view {
+        --bg_size: 100px;
+    }
+}
+
+@keyframes background_animation {
+    from {
+        background-position-x: 0;
+        background-position-y: 0;
+    }
+    to {
+        background-position-x: var(--bg_size);
+        background-position-y: var(--bg_size);
+    }
+}
+
+body {
+    margin: 20px;
+    background-color: rgb(251, 255, 0);
+    background-image: url("/media/backgrounds/blog.webp");
+    background-size: var(--bg_size) var(--bg_size);
+    animation-name: background_animation;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 20px;
+    @media @mobile_view {
+        animation-duration: 4s;
+        margin: 10px;
+        gap: 10px
+    }
+    &::-webkit-scrollbar {
+        display: none;
+    }
+}
+
+.card {
+    all: unset;
+    flex-shrink: 0;
+    aspect-ratio: 300 / 350;
+    border-radius: 20px;
+    background-color: white;
+    overflow: hidden;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    @media @mobile_view {
+        width: 180px;
+        border-radius: 10px;
+    }
+    .banner {
+        aspect-ratio: 2;
+        width: 100%;
+        border-radius: 0;
+        flex-shrink: 0;
+    }
+    .title {
+        margin-top: 2%;
+        margin-left: 2%;
+        margin-bottom: 2%;
+        flex-shrink: 0;
+        font-size: 1.5rem;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        @media @mobile_view {
+            font-size: 1rem;
+        }
+    }
+    .description {
+        margin-top: 0;
+        margin-left: 2%;
+        margin-right: 2%;
+        margin-bottom: 2%;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        word-break: break-all;
+        font-style: italic;
+        flex-grow: 1;
+        font-size: 0.95rem;
+        @media @mobile_view {
+            font-size: 0.7rem;
+        }
+    }
+    .date {
+        margin-top: 0;
+        margin-bottom: 1%;
+        margin-right: 2%;
+        display: flex;
+        justify-content: end;
+        color: gray;
+        font-size: 0.8rem;
+        @media @mobile_view {
+            font-size: 0.6rem;
+        }
+    }
+}
