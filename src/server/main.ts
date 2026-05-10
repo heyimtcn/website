@@ -254,6 +254,12 @@ app.post("/reload_dynamic", async (c) => {
 	}
 	await reload_dynamic();
 	return c.text("OK");
+});
+
+const circus_links = Deno.readTextFileSync("static/misc/circus_links.txt").split(/\r?\n/);
+
+app.get("/circus", (c) => {
+	return c.redirect(circus_links[Math.floor(Math.random() * circus_links.length)]);
 })
 
 await reload_dynamic();
