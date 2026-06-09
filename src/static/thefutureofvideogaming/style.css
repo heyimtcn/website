@@ -1,0 +1,33 @@
+body {
+    margin: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#game_canvas {
+    border-style: solid;
+    image-rendering: pixelated;
+}
+
+#debug_info_container {
+    position: relative;
+    width: 100%;
+}
+
+#debug_info {
+    position: absolute;
+    top: 10px;
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    span {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+    }
+}
