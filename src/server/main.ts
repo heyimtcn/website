@@ -200,7 +200,9 @@ async function reload_dynamic() {
 	print_raw(`\x1b[94mDynamic assets reloaded in ${Math.floor(performance.now() - start_time)}ms\x1b[39m\n`)
 }
 
-app.use("*", serveStatic({ root: "static" }));
+app.get("/thefutureofvideogaming", (c) => {
+	return c.redirect("/thefutureofvideogaming/")
+})
 app.get("/dynamic/*", (c) => {
     const url_path = c.req.url.substring(c.req.url.indexOf("/dynamic") + "/dyanmic".length);
     const file_path = path.join("dynamic",url_path);
@@ -245,6 +247,8 @@ app.get("/blog/*", (c) => {
 		}
 	))
 });
+
+app.use("*", serveStatic({ root: "static" }));
 
 app.post("/reload_dynamic", async (c) => {
 	if (c.req.header("Authorization") != local_api_key) {
