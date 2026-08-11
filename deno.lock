@@ -1,7 +1,8 @@
 {
   "version": "5",
   "specifiers": {
-    "jsr:@hono/hono@^4.12.12": "4.12.12",
+    "jsr:@hono/hono@^4.12.12": "4.13.1",
+    "jsr:@hono/hono@^4.13.1": "4.13.1",
     "jsr:@std/collections@^1.1.3": "1.1.6",
     "jsr:@std/fs@1.0.23": "1.0.23",
     "jsr:@std/internal@^1.0.12": "1.0.12",
@@ -21,6 +22,9 @@
   "jsr": {
     "@hono/hono@4.12.12": {
       "integrity": "dc765178d38b5c4619b358062f6aa5514f7205bb0530b2823ff6265bec69c535"
+    },
+    "@hono/hono@4.13.1": {
+      "integrity": "36e130f7c3a07d2938d0960c3c726e71ff15becdf999512949bc69884b6afb65"
     },
     "@std/collections@1.1.6": {
       "integrity": "b458160ce65ea5ad35da05d0a5cbee4b583677c8b443a10d7beb0c4ac63f2baa"

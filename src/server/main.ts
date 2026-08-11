@@ -1,5 +1,5 @@
 // deno-lint-ignore-file no-import-prefix
-import { Hono } from "jsr:@hono/hono@^4.12.12";
+import { Hono } from "jsr:@hono/hono@^4.13.1";
 import { serveStatic } from "jsr:@hono/hono@^4.12.12/deno";
 import { createClient } from "jsr:@supabase/supabase-js@^2.103.0";
 import * as path from "jsr:@std/path@^1.1.4";
@@ -203,6 +203,11 @@ async function reload_dynamic() {
 app.get("/thefutureofvideogaming", (c) => {
 	return c.redirect("/thefutureofvideogaming/")
 })
+
+app.get("/deltapiano", (c) => {
+	return c.redirect("/deltapiano/")
+})
+
 app.get("/dynamic/*", (c) => {
     const url_path = c.req.url.substring(c.req.url.indexOf("/dynamic") + "/dyanmic".length);
     const file_path = path.join("dynamic",url_path);
