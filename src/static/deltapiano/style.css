@@ -1,0 +1,147 @@
+:root {
+    --neutral-sprite: url("assets/sprites/piano/neutral.png");
+    --arrow-sprite: url("assets/sprites/piano/arrow.png");
+    --diagonal-arrow-sprite: url("assets/sprites/piano/diagonal_arrow.png");
+    --neutral-oct-sprite: url("assets/sprites/piano/neutral_oct.png");
+    --arrow-oct-sprite: url("assets/sprites/piano/arrow_oct.png");
+    --diagonal-arrow-oct-sprite: url("assets/sprites/piano/diagonal_arrow_oct.png");
+    --octave-shift-sprite: url("assets/sprites/piano/octave_shift.png");
+    --sprite-color: #2faebe;
+    --sprite-color-selected: #c8ffe3;
+}
+
+@font-face {
+    font-family: determination;
+    src: url("assets/fonts/determination.ttf");
+}
+
+body {
+    background-color: black;
+    min-height: 100vh;
+    margin: 0;
+}
+
+#piano_ui_container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#piano_ui {
+    position: absolute;
+    top: calc(min(100vw,100vh) / 22);
+    width: min(100vw,100vh);
+    gap: 3.5%;
+    aspect-ratio: 14;
+    display: flex;
+    justify-content: center;
+}
+
+#piano_ui > div {
+    height: 100%;
+    aspect-ratio: 1;
+    image-rendering: pixelated;
+    mask-size: 100% 100%;
+    transition: background-color 100ms;
+    --sprite: var(--arrow-sprite);
+    --oct-sprite: var(--arrow-oct-sprite);
+    --rotation: 0deg;
+    --color: var(--sprite-color);
+    --opacity: 100%;
+    &#neutral {
+        --sprite: var(--neutral-sprite);
+        --oct-sprite: var(--neutral-oct-sprite);
+    }
+    &#shift {
+        --sprite: var(--octave-shift-sprite);
+        --oct-sprite: var(--octave-shift-sprite);
+    }
+    &#arrow_up_left, &#arrow_up_right, &#arrow_down_left, &#arrow_down_right {
+        --sprite: var(--diagonal-arrow-sprite);
+        --oct-sprite: var(--diagonal-arrow-oct-sprite);
+    }
+    &#arrow_left {
+        --rotation: 180deg;
+    }
+    &#arrow_up {
+        --rotation: 270deg;
+    }
+    &#arrow_up_left {
+        --rotation: 180deg;
+    }
+    &#arrow_up_right {
+        --rotation: 270deg;
+    }
+    &#arrow_down {
+        --rotation: 90deg;
+    }
+    &#arrow_down_left {
+        --rotation: 90deg;
+    }
+    &.selected, body.shifted &#shift {
+        --color: var(--sprite-color-selected);
+    }
+    body.shifted & {
+        --opacity: 0%
+    }
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color);
+        mask-size: 100% 100%;
+        transition: background-color 100ms;
+        mask-image: var(--oct-sprite);
+    }
+    mask-image: var(--sprite);
+    rotate: var(--rotation);
+    background-color: color-mix(in srgb, var(--color) var(--opacity), transparent);
+}
+
+#instruments_container {
+    position: absolute;
+    bottom: 5%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#instruments {
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    gap: min(calc(min(100vw,100vh) / 100),8px);
+    flex-wrap: wrap;
+    align-content: start;
+}
+
+#instruments > div {
+    height: calc(min(100vw,100vh) / 14);
+    aspect-ratio: 1;
+    background-color: white;
+    image-rendering: pixelated;
+    mask-size: 100% 100%;
+    cursor: pointer;
+    transition: background-color 40ms;
+    &.selected {
+        background-color: darkgrey;
+    }
+}
+
+#square_box {
+    width: min(100vw,100vh);
+    aspect-ratio: 1;
+    display: none;
+}
+
+#loading_notice {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    translate: -50% -50%;
+    color: white;
+    font-family: determination;
+    opacity: 0.5;
+    transition: opacity 1s;
+}
